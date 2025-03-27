@@ -1,0 +1,25 @@
+{
+  "name": "playwrightlearning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test tests/WebAPIPart1.spec.js --headed",
+    "regression": "npx playwright test",
+    "APITests": "npx playwright test --grep @API",
+    "CucumberRegression": "npx cucumber-js features/Ecommerce.feature --retry 1 --parallel 3 --exit --format html:cucumber-report.html" 
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.8.4",
+    "allure-playwright": "^3.0.6",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@cucumber/cucumber": "^11.0.1",
+    "exceljs": "^4.4.0"
+  }
+}
