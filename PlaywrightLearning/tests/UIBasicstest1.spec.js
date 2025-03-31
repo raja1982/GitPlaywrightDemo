@@ -1,14 +1,19 @@
 const {test, expect} = require('@playwright/test')
-
+//first launch the browser & then initiate the test - await & async are needed since the commands will not execute in sequence.
+//The fixtures are available & come from @Playwright/test. No explicit declaration needed. In order to leverage fixtures inside method it has to be passed
+//in {}, otherwise it would be a normal string variable
 //test('First Playwright Test',async function(){ -- browser is a playwright feature,page fixture will automatically take care of the 2 lines
+////test('First Playwright Test',async function({page}){ -- a default browser instance with a page will be given. No need of context & page declaration
+//playwright.config.js - is the test runner which will be leveraged & it will choose which tests to be executed given in testDir
 test('First Playwright Test',async ({browser}) => 
 {
     // await will be enabled only if async is declared
     //await 
     //Section - 4 [19/5],    Topics - 21 [104/8],    Day1 - Section 5 ,    Day2 - Section 9,    Day3 - Section 12,    Day4 - Section 16,    Day5 - Section 20
-    //chrome - plugins, cookies
-    const context = await browser.newContext();
-    const page =  await context.newPage();
+    //chrome - plugins, cookies,
+    //Create a new context, chrome -plugin & cookies are already available
+    const context = await browser.newContext(); //fresh new incognito window. All the proxy & cookie information can be sent into browser.
+    const page =  await context.newPage(); //const & let are keywords for declaration. An browser instance with above command but no page opened
     page.route('**/*.css',route => route.abort()); //block the css extension
     page.route('**/*.{jpg,png,jpeg}',route => route.abort());
     const userName = page.locator("#username");
